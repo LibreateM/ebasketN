@@ -1,0 +1,38 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<div class="content p-4">
+
+    <h4 class="mb-4">All Users</h4>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+
+            <tr>
+                <th>SR</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Orders</th>
+                <th>Cart</th>
+                <th>Wishlist</th>
+                <th>Total Spent</th>
+            </tr>
+
+            {% for item in user_data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.user.first_name }} {{ item.user.last_name }}</td>
+                <td>{{ item.user.email }}</td>
+                <td>{{ item.orders }}</td>
+                <td>{{ item.cart }}</td>
+                <td>{{ item.wishlist }}</td>
+                <td>₹{{ item.spent }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

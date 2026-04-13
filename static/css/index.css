@@ -1,0 +1,119 @@
+
+    .navbar {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+}
+.navbar .navbar-brand img {
+  max-width: 100px;
+}
+.navbar .navbar-nav .nav-link {
+  color: #000;
+}
+@media screen and (min-width: 1024px) {
+  .navbar {
+    letter-spacing: 0.1em;
+  }
+  .navbar .navbar-nav .nav-link {
+    padding: 0.5em 1em;
+  }
+  .search-and-icons {
+    width: 50%;
+  }
+  .search-and-icons form {
+    flex: 1;
+  }
+}
+@media screen and (min-width: 768px) {
+  .navbar .navbar-brand img {
+    max-width: 7em;
+  }
+  .navbar .navbar-collapse {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+  .search-and-icons {
+    display: flex;
+    align-items: center;
+  }
+}
+.search-and-icons form input {
+  border-radius: 0;
+  height: 2em;
+  background: #fff
+  
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='grey' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E")
+    no-repeat 95%;
+}
+.search-and-icons form input:focus {
+  background: #fff;
+  box-shadow: none;
+}
+.search-and-icons .user-icons div {
+  padding-right: 1em;
+}
+.contact-info p,
+.contact-info a {
+  font-size: 0.9em;
+  padding-right: 1em;
+  color: grey;
+}
+.contact-info a {
+  padding-right: 0;
+}
+.body{
+  scroll-behavior: smooth;
+}
+
+      .qua {
+        --bs-body-color: #000;
+        --bs-body-bg: rgb(255, 255, 255);
+        --qua-theme-color: rgb(13, 110, 253);
+        --qua-theme-color-rgb: 13, 110, 253;
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        overflow: hidden;
+        padding: 60px 0;
+      }
+      @media (min-width: 992px) {
+        .qua {
+          padding: 100px 0;
+        }
+      }
+      .gray .qua,
+      .qua.gray {
+        --bs-body-bg: rgb(246, 246, 246);
+      }
+      .dark-gray .qua,
+      .qua.dark-gray {
+        --bs-body-color: #ffffff;
+        --bs-body-bg: rgb(30, 39, 53);
+      }
+      .dark .qua,
+      .qua.dark {
+        --bs-body-color: #ffffff;
+        --bs-body-bg: rgb(11, 23, 39);
+      }
+      .qua-heading {
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 700;
+        color: var(--bs-body-color);
+      }
+      @media (min-width: 768px) {
+        .qua-heading {
+          font-size: 45px;
+        }
+      }
+      .qua-icon {
+        font-size: 45px;
+        color: var(--qua-theme-color);
+      }
+      .qua p {
+        font-size: 14px;
+        opacity: 0.65;
+      }
+    
+    .image-class {
+      filter: drop-shadow(8px 8px 10px #444444);
+    }

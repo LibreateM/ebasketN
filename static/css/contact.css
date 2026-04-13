@@ -1,0 +1,9 @@
+
+    .width{
+      max-width: 1200px;
+      width:100%;
+    }
+    .width iframe{
+      width:100%;
+      height:50vh;
+    }

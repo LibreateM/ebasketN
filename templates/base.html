@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Basket</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--Extra Css-->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% block extra_css %}{% endblock %}
+    <link rel="icon" href="{% static 'img/logo3.png' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}
+
+    {% endblock %}
+    <!-- Footer-->
+    <footer class="footer">
+        <div class="bg-light py-3 py-md-5 py-xl-8 border-top border-light-subtle">
+            <div class="container overflow-hidden">
+                <div class="row gy-3 gy-md-5 gy-xl-0 align-items-sm-center">
+                    <div class="col-xs-12 col-sm-6 col-xl-3 order-0 order-xl-0">
+                        <div class="footer-logo-wrapper text-center text-sm-start">
+                            <a href="{% url 'index' %}">
+                                <img src="{% static 'img/logo3.png' %}" alt="Logo" width="175" height="175">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-xl-6 order-2 order-xl-1">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link link-secondary px-2 px-md-3" href="{% url 'about' %}">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-secondary px-2 px-md-3" href="{% url 'contact' %}">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-secondary px-2 px-md-3" href="{% url 'faq' %}">Faq</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-secondary px-2 px-md-3" href="{% url 'terms' %}">Terms</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-secondary px-2 px-md-3" href="{% url 'privacy' %}">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-xl-3 order-1 order-xl-2">
+                        <div class="social-media-wrapper">
+                            <ul class="list-unstyled m-0 p-0 d-flex justify-content-center justify-content-sm-end">
+                                <li class="me-3">
+                                    <a href="https://m.facebook.com/" class="link-dark link-opacity-75-hover">
+                                        <i class="fa fa-facebook fs-3 fw-bold"></i>
+                                    </a>
+                                </li>
+                                <li class="me-3">
+                                    <a href="https://www.whatsapp.com/" class="link-dark link-opacity-75-hover">
+                                        <i class="fa fa-whatsapp fs-3 fw-bold"></i>
+                                    </a>
+                                </li>
+                                <li class="me-3">
+                                    <a href="https://x.com/" class="link-dark link-opacity-75-hover">
+                                        <i class="fa fa-twitter fs-3 fw-bold"></i>
+                                    </a>
+                                </li>
+                                <li class="me-3">
+                                    <a href="https://www.instagram.com/?hl=en" class="link-dark link-opacity-75-hover">
+                                        <i class="fa fa-instagram fs-3 fw-bold"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-light py-3 py-md-5 border-top border-light-subtle">
+            <div class="container overflow-hidden">
+                <div class="row">
+                    <div class="col">
+                        <div class="footer-copyright-wrapper text-center">
+                            &copy; 2024. All Rights Reserved.
+                        </div>
+                        <div class="credits text-secondary text-center mt-2 fs-8">
+                            Created By LibreateM(Moksh) with <span class="text-primary">&#9829;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Extra Js-->
+    {% block extra_js %}{% endblock %}
+    <!--Chat Bot-->
+    <script src="{% static 'js/bot.js' %}"></script>
+
+
+</body>
+
+</html>

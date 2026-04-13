@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/review_form.css' %}">
+
+{% endblock %}
+{% block content %}
+<!-- main -->
+<div class="container mt-5 my-5">
+  <div class="card form-card p-4 shadow">
+
+    <h3 class="text-center mb-4">Submit Your Review</h3>
+
+    <form method="POST">
+      {%csrf_token%}
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-control" placeholder="Enter your name" name="name" required>
+      </div>
+
+      <!-- Rating -->
+      <div class="mb-3">
+        <label class="form-label">Rating</label>
+        <select name="star" class="form-select" required>
+          <option value="">Select Rating</option>
+          <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+          <option value="4">⭐⭐⭐⭐ (4)</option>
+          <option value="3">⭐⭐⭐ (3)</option>
+          <option value="2">⭐⭐ (2)</option>
+          <option value="1">⭐ (1)</option>
+        </select>
+      </div>
+
+      <!-- Review -->
+      <div class="mb-3">
+        <label class="form-label">Your Review</label>
+        <textarea class="form-control" rows="4" placeholder="Write your review..." required name="review"></textarea>
+      </div>
+
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary px-4">Submit Review</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+{% endblock %}

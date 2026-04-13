@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+
+{% endblock %}
+{% block content %}
+<!-- Main Content -->
+{% for message in messages %}
+<p style="color:green;">{{ message }}</p>
+{% endfor %}
+<section class="py-3 mt-3 py-md-5">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <h2 class="mb-4 fs-1 fw-bold display-5 text-center">Contact</h2>
+        <p class="text-secondary mb-5 text-center">Your Satisfaction Is Our Priority.</p>
+        <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <div class="col-12 col-lg-9">
+        <div class="bg-white border rounded shadow overflow-hidden">
+          <form method="POST">
+            {%csrf_token%}
+            <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
+              <div class="col-12">
+                <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="fullname" name="FullName" value="" required>
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa fs-5  fa-envelope text-primary"></i>
+                  </span>
+                  <input type="email" class="form-control" id="email" name="email" value="" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="phone" class="form-label">Phone Number</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa fs-5  fa-phone text-primary"></i>
+                  </span>
+                  <input type="text" class="form-control" id="phone" name="number" value="">
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+              </div>
+              <div class="col-12">
+                <div class="d-grid">
+                  <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-3 w-100 mt-5 mb-5 py-md-5">
+  <div class="container">
+    <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+      <div class="col-12 col-lg-6">
+        <img class="img-fluid rounded image-class" loading="lazy" src="{% static 'img/contact.png' %}"
+          alt="Get in touch">
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="row justify-content-xl-center">
+          <div class="col-12 col-xl-11">
+            <h2 class="h1 mb-3">Get in touch</h2>
+            <p class="lead fs-4 text-secondary mb-5">Let’s connect and make your experience better.</p>
+            <div class="d-flex mb-4">
+              <div class="me-4 text-primary">
+                <i class="fa fa-map-marker fs-1 fw-bold"></i>
+              </div>
+              <div>
+                <h4 class="mb-3">Address</h4>
+                <p class="mb-0 text-secondary">Fatehabad Rd, Bamrauli Katara, Agra, Uttar Pradesh 283125</p>
+              </div>
+            </div>
+            <div class="d-flex mb-4">
+              <div class="me-4 text-primary">
+                <i class="fa fs-1 fw-bold fa-phone"></i>
+              </div>
+              <div>
+                <h4 class="mb-3">Phone</h4>
+                <p class="mb-0">
+                  <a class="link-secondary text-decoration-none" href="tel:+9196343 95031">+9196343 95031</a>
+                </p>
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="me-4 text-primary">
+                <i class="fa fs-1 fw-bold fa-envelope"></i>
+              </div>
+              <div>
+                <h4 class="mb-3">E-Mail</h4>
+                <p>
+                  <a class="link-secondary text-decoration-none" href="mailto:ahu@gmail.com">ahu@gmail.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="mt-5 mb-3 width col-lg-7 col-md-12 m-auto">
+  <div>
+    <iframe src="https://www.google.com/maps?q=Fatehabad%20Rd%20Bamrauli%20Katara%20Agra&output=embed" style="border:0;"
+      allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

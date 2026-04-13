@@ -1,0 +1,10 @@
+ 
+        .code-box {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            overflow-x: auto;
+            font-size: 13px;
+        }

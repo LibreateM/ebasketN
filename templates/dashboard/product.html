@@ -1,0 +1,95 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block title %}
+
+Dashboard
+
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="content">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <span class="hamburger" onclick="toggleSidebar()">☰</span>
+        <h4>Admin Dashboard</h4>
+    </div>
+    <!-- form -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4 class="mb-0"><i class="bi bi-basket"></i> Add Product <i class="bi bi-basket    "></i>
+                        </h4>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <form method="POST" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+                            <!-- category -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Select Category</label>
+                                <select class="form-control" name="category">
+                                    <option class="form-control">Select Category</option>
+                                    {% for cat in categories %}
+                                    <option class="form-control" value="{{ cat.id }}">{{ cat.category }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <!-- Product Name -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Enter Product Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Product Name" name="product"
+                                    required>
+                            </div>
+
+                            <!-- Product Price -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Enter Product Price</label>
+                                <input type="text" class="form-control" placeholder="Enter Product Price" name="price"
+                                    required>
+                            </div>
+
+                            <!-- Product Stars -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Enter Product Stars</label>
+                                <input type="text" class="form-control" placeholder="Enter Product Stars" name="star"
+                                    required>
+                            </div>
+
+                            <!-- Product Image -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Product Image</label>
+                                <input type="file" class="form-control" name="pic">
+                            </div>
+
+
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button class="btn btn-dark btn-lg" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

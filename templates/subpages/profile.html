@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-Basket User Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/logo3.png' %}">
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h4 class="fs-1 text-center">
+      E-Basket</h4>
+    <a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
+    <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart </a>
+    <a href="{% url 'wish' %}"><i class="fa fa-heart"></i> Wishlist</a>
+    <a href="{%url 'logout'%}"><i class="fa fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-light bg-white mb-4 shadow-sm rounded">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h5">User Dashboard</span>
+        <span>Hello, {{ user.first_name }} 👋</span>
+      </div>
+    </nav>
+
+    <!-- Cards -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-3">
+        <div class="card p-3">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Total Orders</h6>
+              <h4>{{order}}</h4>
+            </div>
+            <i class="fa fa-box text-primary"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-3">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Wishlist</h6>
+              <h4>{{wish}}</h4>
+            </div>
+            <i class="fa fa-heart text-danger"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-3">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Cart Items</h6>
+              <h4>{{ cart }}</h4>
+            </div>
+            <i class="fa fa-shopping-cart text-success"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-3">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Total Spent</h6>
+              <h4>₹{{order1}}</h4>
+            </div>
+            <i class="fa fa-wallet text-warning"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Orders + Profile -->
+    <div class="row">
+
+      <!-- Orders -->
+      <div class="col-md-8">
+        <div class="card p-3">
+          <h5>Recent Orders</h5>
+
+          <table class="table mt-3">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Date</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in recent %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td> {% for item in order.orderitem_set.all %}
+                  {{ item.product.product }} (x{{ item.quantity }})<br>
+                  {% endfor %}</td>
+                <td>{{ order.created|date:"d-m-Y" }}</td>
+                <td>{{ order.total_price }}</td>
+              </tr>
+
+              {% empty %}
+              <tr>
+                <td colspan="4" class="text-center">No recent orders</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div><br>
+
+      <!-- Profile -->
+      <br>
+      <div class="col-md-4">
+        <div class="card profile-box">
+
+          <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+          <p class="text-muted">{{ user.email }}</p>
+          <a class="btn btn-lg btn-primary" href="{% url 'edit' %}">Edit Profile</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dashboard-container">
+      <div class="charts-grid">
+        <!-- Chart 1: Doughnut -->
+        <div class="chart-card">
+          <h3 class="chart-title">Payment Methods </h3>
+          <div class="chart-wrapper">
+            <canvas id="doughnutChart"></canvas>
+          </div>
+          <div class="legend-container">
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4dd82edb;"></div>Cash
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #36A2EB;"></div>Card
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #FFCE56;"></div>Net Banking
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart 2: Bar -->
+        <div class="chart-card">
+          <h3 class="chart-title">Most Buying Products</h3>
+          <div class="chart-wrapper">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 3: Line -->
+        <div class="chart-card">
+          <h3 class="chart-title">Users Monthly Purchase</h3>
+          <div class="chart-wrapper">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {{ payment_labels|json_script:"payment-labels" }}
+  {{ payment_data|json_script:"payment-data" }}
+
+  {{ cat_labels|json_script:"cat-labels" }}
+  {{ cat_data|json_script:"cat-data" }}
+
+  {{ months|json_script:"months" }}
+  {{ month_count|json_script:"month-data" }}
+  <script src="{% static 'js/profile1.js' %}"></script>
+</body>
+
+</html>

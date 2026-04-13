@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <h3>E-Basket</h3>
+    <a href="{% url 'dashboard' %}"><i class="bi bi-speedometer"></i> Dashboard</a>
+    <a href="{% url 'categoryform' %}"><i class="bi bi-tags-fill"></i> Add Categories</a>
+    <a href="{% url 'productform' %}"><i class="bi bi-basket-fill"></i> Add Products</a>
+    <a href="{% url 'admin_users' %}"><i class="bi bi-people-fill"></i> Users</a>
+    <a href="{% url 'admin_contacts' %}"><i class="bi bi-chat-left-dots-fill"></i> Contact Reply</a>
+    <a href="{% url 'admin_logout' %}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+
+
+  {% block content %}
+  {% endblock %}
+  labels: {{ months|safe }},
+  data: {{ revenue_data|safe }},
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    console.log("Months:", {{ months| safe }});
+    console.log("Revenue:", {{ revenue_data| safe }});
+
+    const ctx = document.getElementById('revenueChart');
+
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: {{ months| safe }},
+    datasets: [{
+      label: 'Revenue',
+      data: {{ revenue_data| safe }},
+      borderWidth: 2
+                  }]
+        }
+      });
+    } else {
+      console.log("Canvas not found");
+    }
+    const ctx2 = document.getElementById('donutChart');
+
+    console.log("Category Labels:", {{ cat_labels| safe }});
+    console.log("Category Data:", {{ cat_data| safe }});
+
+    if (ctx2) {
+      new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+          labels: {{ cat_labels| safe }},
+    datasets: [{
+      data: {{ cat_data| safe }}
+            }]
+        }
+    });
+    } 
+    else {
+      console.log("Donut canvas not found");
+    }
+  </script>
+
+
+</body>
+
+</html>

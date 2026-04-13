@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+{% block content %}
+<h2 class="text-uppercase  mt-2 text-center">Search Results for "{{ query }}"</h2>
+<div class="container-fluid px-sm-1  mx-auto">
+  <div class="row justify-content-center">
+    <div class="d-flex">
+      {% for product in products %}
+      <div class="card  shadow card-1">
+
+        <div class="product-pic"><a class="text-decoration-none" href="{% url 'product' product.id %}">
+            {% if product.pic %}
+            <img src="{{ product.pic.url }}" class="img-fluid rounded-3" alt="{{ product.product }}">
+            {% endif %}</a>
+        </div><br>
+        <h5 class="product-name">{{ product.product }}</h5>
+        <div class="row  justify-content-between">
+          <p class="price">₹{{ product.price }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <h4 class="text-center">No results found</h4>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

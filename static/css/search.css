@@ -1,0 +1,44 @@
+
+.card {
+    margin: auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+.pic1 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.product-pic {
+    padding-left: auto;
+    padding-right: auto;
+    width: 100%;
+}
+
+.card-1 {
+    padding: 30px 30px 20px 30px !important;
+    border: 1px solid black 0.5;
+    width: 375px;
+}
+
+.category {
+    padding-top: 25px;
+    color: grey;
+}
+
+.product-name {
+    padding-bottom: 15px;
+    font-family: Florence;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 18px;
+}
+

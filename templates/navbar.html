@@ -1,0 +1,51 @@
+{% load static %}
+<nav class="navbar navbar-expand-md bg-body-tertiary position-sticky top-0 start-0">
+    <div class="container-xl">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'img/logo3.png' %}" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'category' %}">Category</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="index.html" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Signup/Signin
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'registration' %}">Signup</a></li>
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Signin</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                </li>
+
+            </ul>
+            <div class="search-and-icons">
+                <form class="d-flex mb-2 me-2" role="search" action="{% url 'search' %}" method="GET">
+                    <input class="form-control me-2" name="q" type="search" aria-label="Search"
+                        placeholder="Enter Product Name That You Search">
+                </form>
+                <div class="user-icons d-flex mb-2">
+                    <div class="profile"><a href="{% url 'profile' %}"><i class="fa fa-user text-dark"></i></a></div>
+                    <div class="wishlist"><a href="{% url 'wish' %}"><i class="fa fa-heart text-dark"></i></a></div>
+                    <div class="cart"><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart text-dark"></i></i></div>
+                </div>
+            </div>
+            <div class="contact-info d-md-flex">
+                <p>+9196343 95031 | +9163957 66731</p>
+                <p><a href="mailto:ahu@gmail.com">ahu@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+{% block content %}
+<!-- Product -->
+<section class="product" id="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 position-relative">
+        <div class="me-lg-4">
+          <div class="text-center p-1 mb-2">
+            {% if product.pic %}
+            <img src="{{ product.pic.url }}" class="img-fluid rounded-3" alt="{{ product.product }}">
+            {% endif %}
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <div>
+          <h1 class="product-heading mb-3">{{ product.product }}</h1>
+          <p class="product-content fw-light mb-4">
+            <span class="product-rating">
+              {% for i in "12345"|make_list %}
+              {% if forloop.counter <= product.star %} ⭐ {% else %} ☆ {% endif %} {% endfor %} </span>
+                <span class="mx-1">{{product.star}}.0</span>
+                <a href="review.html" class="product-review me-1">8 Reviews</a>
+                <span>19 orders</span>
+          </p>
+          <hr class="product-hr" />
+          <div class="mb-0 d-flex flex-wrap align-items-center">
+            <span class="product-price me-2" id="singlePrice">₹{{ product.price }}</span>
+          </div>
+        </div>
+
+        <hr class="product-hr mb-4" />
+        <form method="POST" action="{% url 'add_to_cart' product.id %}" id="productForm">
+          {% csrf_token %}
+
+          <!-- Quantity Counter -->
+          <div class="mb-4">
+            <h5 class="product-title mb-2">Quantity:</h5>
+            <div class="input-group product-qty d-inline-flex align-items-center mb-2">
+              <button class="btn qty-minus" type="button" id="qtyMinus">-</button>
+              <!--
+                  FIX: This is the visible counter (display only).
+                  It is synced to the hidden qty input via JS.
+                -->
+              <input type="number" class="form-control" id="productQty" value="1" min="1" max="99" readonly>
+              <button class="btn qty-plus" type="button" id="qtyPlus">+</button>
+            </div>
+          </div>
+
+          <!-- Price Breakdown -->
+          <div class="price-breakdown">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Price per item:</span>
+              <span id="pricePerItem">₹{{ product.price }}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Quantity:</span>
+              <span id="qtyDisplay">1</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="fw-bold">Total:</span>
+              <span class="total-price" id="totalPrice">₹{{ product.price }}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Shipping:</span>
+              <span class="text-success">FREE</span>
+            </div>
+          </div>
+
+
+          <input type="hidden" name="qty" id="qtyHidden" value="1">
+
+          <p class="product-content mt-3">
+            <span class="opacity-75">Ships to</span>
+            <i class="fa fa-map-marker mx-1"></i>
+            <a href="#!">Delhi</a>
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+
+            <form method="POST" action="{% url 'buy_now' product.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="qty" id="qtyHidden" value="1">
+
+              <button type="submit" class="btn product-btn">
+                Buy Now
+              </button>
+            </form>
+
+            <form method="POST" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="qty" id="qtyHidden" value="1">
+
+              <button type="submit" class="btn btn-primary">
+                Add to Cart
+              </button>
+            </form>
+
+            <a class="btn btn-link product-fav d-inline-flex align-items-center text-decoration-none"
+              href="{% url 'add_wishlist' product.id %}">
+              <i class="fa fa-heart fs-5"></i>
+            </a>
+
+            <button type="button"
+              class="btn btn-link product-share d-inline-flex align-items-center text-decoration-none">
+              <i class="fa fa-share-alt fs-5"></i>
+            </button>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center">
+            <i class="fa fa-check-circle fs-3 opacity-75"></i>
+            <div class="product-content ms-2">
+              <b>75-Day Buyer Protection</b><br>
+              <span class="opacity-75">Money back guarantee</span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+  const productPrice = "{{ product.price }}";
+</script>
+<script src="{% static 'js/product1.js' %}"></script>
+{% endblock %}

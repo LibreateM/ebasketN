@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="{% static 'css/order_summary.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="check__epcheckout1 mt-5">
+  <div class="container">
+    <div class="row">
+
+      <!-- LEFT SIDE -->
+      <div class="col-lg-8">
+
+        <!-- ✅ ADDRESS -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5>Shipping Information</h5>
+
+            {% for add in add %}
+            <p>
+              <b>{{ add.name }}, +91 {{ add.number }}</b><br>
+              {{ add.add1 }}, {{ add.add2 }}<br>
+              {{ add.city }}, {{ add.state }}, {{ add.zipcode }}
+            </p>
+            {% empty %}
+            <p>No Address Found</p>
+            {% endfor %}
+
+            <a href="{% url 'address' %}">Change Address</a>
+          </div>
+        </div>
+
+        <!-- ✅ PAYMENT -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5>Payment Method</h5>
+
+            {% if pay %}
+            {% if pay.method_type == "card" %}
+            <p><i class="bi bi-credit-card"></i> Card</p>
+
+            {% elif pay.method_type == "paypal" %}
+            <p><i class="bi bi-paypal"></i> PayPal</p>
+
+            {% elif pay.method_type == "netbanking" %}
+            <p><i class="bi bi-bank"></i> Net Banking</p>
+
+            {% elif pay.method_type == "cod" %}
+            <p><i class="bi bi-cash-stack"></i> Cash on Delivery</p>
+
+            {% else %}
+            <p>{{ pay.method_type }}</p>
+            {% endif %}
+            {% else %}
+            <p>No payment selected</p>
+            {% endif %}
+
+            <a href="{% url 'payment_method' %}">Change</a>
+          </div>
+        </div>
+
+        <!-- ✅ ORDER ITEMS -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5>Order Review</h5>
+
+            {% for item in cart_items %}
+            <hr>
+
+            <div class="d-flex">
+
+              <!-- IMAGE -->
+              <div class="me-3">
+                {% if item.product.pic %}
+                <img src="{{ item.product.pic.url }}" width="80">
+                {% else %}
+                <img src="{% static 'img/ph1.png' %}" width="80">
+                {% endif %}
+              </div>
+
+              <!-- DETAILS -->
+              <div class="w-100">
+                <h6>{{ item.product.product }}</h6>
+
+                <p class="mb-1">Price: ₹{{ item.product.price }}</p>
+                <p class="mb-1">Quantity: {{ item.quantity }}</p>
+
+                <p class="fw-bold">Total: ₹{{ item.total }}</p>
+              </div>
+
+            </div>
+
+            {% empty %}
+            <p>Your cart is empty</p>
+            {% endfor %}
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+
+            <h4>Order Summary</h4>
+
+            <p>Total Items: {{ cart_items|length }}</p>
+            <p>Shipping: <span class="text-success">FREE</span></p>
+
+            <hr>
+
+            <h5>Total: ₹{{ total }}</h5>
+
+            <!-- ✅ PLACE ORDER -->
+            <form method="POST" action="{% url 'place_order' %}">
+              {% csrf_token %}
+              <button class="btn btn-primary w-100 mt-3">
+                Place Order
+              </button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

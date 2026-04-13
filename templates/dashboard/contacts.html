@@ -1,0 +1,79 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<div class="content p-4">
+
+    <h4><i class="bi bi-chat-left-dots"></i> Contact Messages <i class="bi bi-chat-left-dots"></i></h4>
+
+    {% for message in messages %}
+    <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Action</th>
+        </tr>
+
+        {% for c in contacts %}
+        <tr>
+            <td>{{ c.FullName }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.message }}</td>
+
+            <td>
+                <button class="btn btn-primary btn-sm"
+                    onclick="openReply('{{ c.id }}','{{ c.email }}','{{ c.FullName }}')">
+                    Reply
+                </button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">No recent Messages</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- 🔥 Reply Box -->
+    <div id="replyBox" class="card p-3 mt-4" style="display:none;">
+        <h5>Reply to User</h5>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="hidden" name="contact_id" id="contactId">
+
+            <div class="mb-2">
+                <label>Name</label>
+                <input type="text" id="replyName" class="form-control" readonly>
+            </div>
+
+            <div class="mb-2">
+                <label>Email</label>
+                <input type="email" name="email" id="replyEmail" class="form-control" readonly>
+            </div>
+
+            <div class="mb-2">
+                <label>Reply Message</label>
+                <textarea name="reply_message" class="form-control" required></textarea>
+            </div>
+
+            <button class="btn btn-success">Send Reply</button>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    function openReply(id, email, name) {
+        document.getElementById('replyBox').style.display = 'block';
+        document.getElementById('replyEmail').value = email;
+        document.getElementById('replyName').value = name;
+        document.getElementById('contactId').value = id;
+    }
+</script>
+
+{% endblock %}

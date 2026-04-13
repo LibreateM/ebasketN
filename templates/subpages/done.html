@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/done.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card p-4 mt-3">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <span class="d-block fw-bold">
+          Thank you, {{ request.user.username }}
+        </span>
+
+        <span>
+          Order - {{ order.id }}
+        </span>
+      </div>
+    </div>
+
+    <!-- MESSAGE -->
+    <div>
+      <span>
+        Your order has been placed successfully
+      </span>
+    </div>
+
+    <hr>
+
+    <!-- ADDRESS -->
+    {% if address %}
+    <div>
+      <span class="fw-bold">{{ address.name }}</span><br>
+      <span>{{ address.add1 }}, {{ address.add2 }}</span><br>
+      <span>{{ address.city }}, {{ address.state }} - {{ address.zipcode }}</span>
+    </div>
+    {% else %}
+    <p>No address found</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- PAYMENT -->
+    <div>
+      <span class="fw-bold">Payment Method:</span><br>
+
+      {% if order.payment_method == "cod" %}
+      Cash on Delivery
+
+      {% elif order.payment_method == "card" %}
+      Card
+
+      {% elif order.payment_method == "paypal" %}
+      PayPal
+
+      {% else %}
+      {{ order.payment_method }}
+      {% endif %}
+    </div>
+
+    <hr>
+
+    <!-- TOTAL -->
+    <div>
+      <span class="fw-bold">Total Paid:</span>
+      ₹{{ order.total_price }}
+    </div>
+
+    <!-- BUTTON -->
+    <div class="mt-3">
+      <a href="{% url 'category' %}" class="btn btn-primary w-100">
+        Continue Shopping
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

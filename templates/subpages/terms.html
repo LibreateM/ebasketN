@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/font.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+  rel="stylesheet">
+{% endblock %}
+{% block content %}
+<section class="mt-5 merriweather">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-12 col-lg-6">
+        <h1> TERMS OF SERVICES</h1>
+        <p>
+          Your Trust, Our Commitment — Clear Terms for a Safe Experience.
+        </p>
+      </div>
+      <div class="col-12 col-lg-6 text-lg-end mt-3 mt-lg-0">
+        <button class="btn btn-primary">Get Started</button>
+        <button class="btn btn-outline-primary">Learn More</button>
+      </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+        <div>
+          <p>
+            Welcome to E-Basket.By accessing or using our website and services, you agree to comply with and be bound by
+            these Terms of Service. These terms outline the rules, responsibilities, and guidelines for using our
+            platform to ensure a safe, fair, and enjoyable experience for all users.
+            By using our website, you acknowledge that you have read, understood, and agreed to these Terms of Service,
+            as well as any additional guidelines or rules published on the site.
+            Our website and services are intended for personal, non-commercial use. You agree not to use our site for
+            any unlawful purpose or in a way that could harm the website, other users, or our service. Unauthorized use
+            of our content, including copying, distributing, or reproducing without permission, is prohibited.
+          </p>
+          <p>
+            Any content you upload, share, or submit through our site must not violate any laws or infringe upon
+            third-party rights. You grant us the right to use, display, and distribute your content in connection with
+            our services.
+          </p>
+          <p>
+            Our Privacy Policy explains how we collect, use, and protect your information. By using our services, you
+            agree to our privacy practices and consent to the processing of your personal data as described.
+          </p>
+          <p>
+            We reserve the right to modify or discontinue any part of our website or services at any time without prior
+            notice. We may also update these Terms of Service, and continued use of our website constitutes acceptance
+            of the updated terms.
+          </p>
+          <p>
+            To the fullest extent permitted by law, we are not responsible for any direct, indirect, incidental, or
+            consequential damages resulting from your use of our site or reliance on the information provided.
+          </p>
+          <p>
+            By using our website, you agree to these Terms of Service and our Privacy Policy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

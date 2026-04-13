@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
+
+{% endblock %}
+{% block content %}
+<!-- main -->
+<!-- Main Content -->
+<div class="container mt-5">
+  <div class="row">
+
+    {% for r in reviews %}
+    <div class="col-md-3">
+      <div class="card p-3 mb-4 shadow-sm">
+
+        <!-- Name -->
+        <h5 class="text-center">{{ r.name }}</h5>
+
+        <!-- Stars -->
+        <p class="text-center">
+          {% for i in "12345"|make_list %}
+          {% if forloop.counter <= r.star %} ⭐ {% else %} ☆ {% endif %} {% endfor %} </p>
+
+            <!-- Review -->
+            <p class="text-center">{{ r.review }}</p>
+
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center">No reviews yet</p>
+    {% endfor %}
+
+  </div>
+</div>
+<!-- Button Section -->
+<div class="text-center mt-5">
+  <a class="btn text-decoration-none  product-btn-outline text-uppercase btn-primary d-inline-flex align-items-center px-3 px-sm-4 me-1"
+    id="addToCartBtn" href="{% url 'review_form' %}"><i class="fa fa-plus me-2"></i>Add Your Review</i></a>
+</div><br>
+{% endblock %}
+
+
+{% block extra_js %}
+
+{% endblock %}

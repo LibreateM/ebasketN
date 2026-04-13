@@ -1,0 +1,41 @@
+
+      .about__about2 {
+        --bs-body-color: #1e2329;
+        --bs-body-bg: rgb(255, 255, 255);
+        --about-theme-color: rgb(13, 110, 253);
+        --about-theme-color-rgb: 13, 110, 253;
+        background-color: var(--bs-body-bg);
+        overflow: hidden;
+        padding: 60px 0;
+      }
+      @media (min-width: 768px) {
+        .about__about2 {
+          padding: 100px 0;
+        }
+      }
+      .gray .about__about2,
+      .about__about2.gray {
+        --bs-body-bg: rgb(246, 246, 246);
+      }
+      .dark-gray .about__about2,
+      .about__about2.dark-gray {
+        --bs-body-color: #ffffff;
+        --bs-body-bg: rgb(30, 39, 53);
+      }
+      .dark .about__about2,
+      .about__about2.dark {
+        --bs-body-color: #ffffff;
+        --bs-body-bg: rgb(11, 23, 39);
+      }
+      .about__about2-banner {
+        min-height: 300px;
+        background-size: cover;
+        background-position: center;
+      }
+      .about__about2-content p {
+        font-size: 16px;
+        color: var(--bs-body-color);
+        opacity: 0.8;
+        letter-spacing: 2px;
+      }
+    
