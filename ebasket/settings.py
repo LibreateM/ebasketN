@@ -146,18 +146,14 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'login'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'profile'
 
-import ssl
-
-EMAIL_BACKEND = 'eapp.email_backend.CustomEmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
-
-EMAIL_SSL_CERTFILE = None
-EMAIL_SSL_KEYFILE = None
+EMAIL_TIMEOUT = 10
 
 # Custom SSL context to bypass verification (development only)
 import smtplib
