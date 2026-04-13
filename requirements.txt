@@ -49,3 +49,5 @@ urllib3==2.6.3
 dj-static
 gunicorn
 python-dotenv
+psycopg2-binary
+dj-database-url
