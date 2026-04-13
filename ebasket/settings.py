@@ -146,11 +146,6 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'login'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'profile'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp-relay.brevo.com'
-EMAIL_PORT = 465
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('BREVO_EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.getenv('BREVO_SMTP_PASSWORD')
+EMAIL_BACKEND = 'eapp.brevo_backend.BrevoEmailBackend'
+BREVO_API_KEY = os.getenv('BREVO_API_KEY')
 DEFAULT_FROM_EMAIL = os.getenv('BREVO_EMAIL_USER')
-EMAIL_TIMEOUT = 100
