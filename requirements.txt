@@ -52,3 +52,5 @@ python-dotenv
 psycopg2-binary
 requests
 dj-database-url
+cloudinary 
+django-cloudinary-storage
