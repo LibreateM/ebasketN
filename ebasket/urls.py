@@ -22,4 +22,4 @@ urlpatterns = [
     path('', include('eapp.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
     path('admin/', admin.site.urls),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
