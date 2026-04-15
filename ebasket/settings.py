@@ -24,8 +24,10 @@ INSTALLED_APPS = [
     'eapp',
     'social_django',
 ]
+import cloudinary_storage
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
