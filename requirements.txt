@@ -6,7 +6,6 @@ charset-normalizer==3.4.4
 colorama==0.4.6
 cryptography==46.0.5
 defusedxml==0.7.1
-django==5.2.8
 whitenoise
 django-allauth==65.15.1
 google-ai-generativelanguage==0.6.15
@@ -52,5 +51,6 @@ python-dotenv
 psycopg2-binary
 requests
 dj-database-url
-cloudinary 
-django-cloudinary-storage
+django==4.2.16
+cloudinary==1.44.1
+django-cloudinary-storage==0.3.0
