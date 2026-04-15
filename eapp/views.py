@@ -22,16 +22,20 @@ from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from django.core.files.storage import default_storage
 import os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 def check_env(request):
     
     return HttpResponse(
         f"CLOUDINARY_URL: {os.getenv('CLOUDINARY_URL')}"
     )
-def test_storage(request):  
+def test_storage(request):
     
-    return HttpResponse(
-        f"SETTING: {settings.DEFAULT_FILE_STORAGE} \n STORAGE: {default_storage}"
-    )
+    # force initialize
+    name = default_storage.save("test.txt", ContentFile("hello world"))
+    url = default_storage.url(name)
+
+    return HttpResponse(f"Saved: {name} \n URL: {url}")
 def test_cloudinary(request):
     cfg = cloudinary.config()
     return HttpResponse(
