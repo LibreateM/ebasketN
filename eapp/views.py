@@ -15,6 +15,12 @@ from django.utils import timezone
 from .forms import PasswordResetRequestForm, SetNewPasswordForm
 from django.urls import reverse
 import json
+from django.http import HttpResponse
+import cloudinary
+
+def test_cloudinary(request):
+    cfg = cloudinary.config()
+    return HttpResponse(f"cloud: {cfg.cloud_name}, key: {cfg.api_key}")
 # Create your views here.
 def index(request):
     return render(request,'index.html')
