@@ -21,6 +21,12 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from django.core.files.storage import default_storage
+import os
+def check_env(request):
+    
+    return HttpResponse(
+        f"CLOUDINARY_URL: {os.getenv('CLOUDINARY_URL')}"
+    )
 def test_storage(request):  
     
     return HttpResponse(
