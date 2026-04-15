@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 urlpatterns = [
+  path('checkenv',check_env),
   path('test-storage/', test_storage),
   path('test-cloud/', test_cloudinary),
   path('', index, name="index"),
