@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 urlpatterns = [
+  path('test-cloud/', test_cloudinary),
   path('', index, name="index"),
   path('about/', about, name="about"),
   path('address/', address, name="address"),
