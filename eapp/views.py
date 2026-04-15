@@ -18,6 +18,9 @@ import json
 from django.http import HttpResponse
 import cloudinary
 
+def test_storage(request):
+    from django.core.files.storage import default_storage
+    return HttpResponse(str(default_storage))
 def test_cloudinary(request):
     cfg = cloudinary.config()
     return HttpResponse(f"cloud: {cfg.cloud_name}, key: {cfg.api_key}")
