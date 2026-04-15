@@ -17,13 +17,15 @@ from django.urls import reverse
 import json
 from django.http import HttpResponse
 import cloudinary
-
+from django.conf import settings
+from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from django.core.files.storage import default_storage
+def test_storage(request):  
     
-def test_storage(request):
-    from django.core.files.storage import default_storage
-    return HttpResponse(f"Storage: {default_storage} | Type: {type(default_storage)}")
+    return HttpResponse(
+        f"SETTING: {settings.DEFAULT_FILE_STORAGE} \n STORAGE: {default_storage}"
+    )
 def test_cloudinary(request):
     cfg = cloudinary.config()
     return HttpResponse(
