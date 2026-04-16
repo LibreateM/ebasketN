@@ -18,11 +18,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
     'eapp',
-    'social_django',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',     'allauth.socialaccount.providers.google',
 ]
 
 STORAGES = {
@@ -77,7 +80,7 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
+'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
