@@ -23,9 +23,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'eapp',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',     'allauth.socialaccount.providers.google',
+    'social_django',
 ]
 
 STORAGES = {
@@ -43,7 +41,8 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-'allauth.account.middleware.AccountMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware',
+
+ 'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
@@ -80,7 +79,7 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = (
-'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
