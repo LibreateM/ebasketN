@@ -20,6 +20,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('', include('eapp.urls')),
-    path('auth/', include('social_django.urls', namespace='social')),
+    path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
 ]
