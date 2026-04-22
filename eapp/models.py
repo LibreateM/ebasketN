@@ -119,7 +119,7 @@ class PaymentMethod(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_price = models.IntegerField()
-    payment_method = models.CharField(max_length=20)
+    payment_method = models.CharField()
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
